@@ -29,4 +29,4 @@ if (passwords.includes(userInput)) {
     }
     break;
 }
-} while(3 > 4);
+} while(true);
