@@ -9,7 +9,7 @@ const isLoginValid = function(login) {
 };
 
 const isLoginUnique = function(allLogins, login) {
-  if (logins.includes(login)) {
+  if (allLogins.includes(login)) {
     return false;
   } else {
     return true;
@@ -18,8 +18,8 @@ const isLoginUnique = function(allLogins, login) {
 
 const addLogin = function(allLogins, login) {
   if (isLoginValid(login) === true) {
-    if (isLoginUnique(logins, login) === true){
-      logins.push(login);
+    if (isLoginUnique(allLogins, login) === true){
+      allLogins.push(login);
       return console.log('Логин успешно добавлен!');
     } else {
       return console.log('Введенный логин уже существует!');
