@@ -9,8 +9,8 @@ class Car {
         this.distance = 0;
     }
     
-    getSpecs() {
-        console.log(`maxSpeed: ${this.maxSpeed} speed: ${this.speed} isOn: ${this.isOn} distance: ${this.distance} price: ${this.price}`)
+    static getSpecs(car) {
+        console.log(`maxSpeed: ${car.maxSpeed} speed: ${car.speed} isOn: ${car.isOn} distance: ${car.distance} price: ${car.price}`)
     }
 
     turnOn() {
@@ -53,13 +53,13 @@ class Car {
   mustang.accelerate(50);
   mustang.drive(2);
   
-  mustang.getSpecs(mustang);
+  Car.getSpecs(mustang);
   
   mustang.decelerate(20);
   mustang.drive(1);
   mustang.turnOff();
   
-  mustang.getSpecs(mustang);
+  Car.getSpecs(mustang);
   
   console.log(mustang.price); // 2000
   mustang.price = 4000;
