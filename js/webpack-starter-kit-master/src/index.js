@@ -1,0 +1,9 @@
+import "./styles.css";
+import "./comp/task-01";
+import "./comp/task-02";
+import "./comp/task-03";
+import "./comp/task-04";
+import "./comp/task-05";
+import "./comp/task-06";
+import "./comp/task-07";
+import "./comp/task-08";
