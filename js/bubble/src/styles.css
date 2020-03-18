@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap");
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	background: linear-gradient(-45deg, #000000, #ffffff, #000000, #000000);
+	background-size: 10000% 10000%;
+	animation: gradient 5s ease infinite;
+	font-family: "Roboto", sans-serif;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+.list-item__image {
+	width: 400px;
+	height: 600px;
+	border-radius: 20px;
+}
+
+.group {
+	position: relative;
+	margin-bottom: 45px;
+	display: flex;
+	justify-content: center;
+}
+
+input {
+	border-radius: 7px;
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	display: block;
+	width: 500px;
+	border: none;
+	border-bottom: 1px solid #000000;
+}
+
+input:focus {
+	outline: none;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+	top: -20px;
+	font-size: 14px;
+	color: #ef3258;
+}
+
+.bar {
+	position: relative;
+	display: block;
+	width: 500px;
+}
+.bar:before,
+.bar:after {
+	content: "";
+	height: 3px;
+	width: 0;
+	bottom: -1px;
+	position: absolute;
+	background: #ef3258;
+	transition: 0.5s ease all;
+}
+.bar:before {
+	left: 50%;
+}
+.bar:after {
+	right: 50%;
+}
+
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+	width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+	position: absolute;
+	height: 60%;
+	width: 100px;
+	top: 25%;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+	animation: inputHighlighter 0.5s ease;
+}
+
+.btn {
+	background: #ef3258;
+	color: white;
+	width: 150px;
+	height: 42px;
+	font-size: 18px;
+	font-weight: 500;
+	border-radius: 7px;
+	transition: 0.6s;
+	margin-top: 0px;
+	margin-left: 7px;
+	text-transform: uppercase;
+	border: 0 solid;
+	box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+	outline: 1px solid;
+	outline-color: rgba(255, 255, 255, 0.5);
+	outline-offset: 0px;
+	text-shadow: none;
+	transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn:hover {
+	border: 1px solid;
+	box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5),
+		0 0 20px rgba(255, 255, 255, 0.2);
+	outline-color: rgba(255, 255, 255, 0);
+	outline-offset: 15px;
+	text-shadow: 1px 1px 2px #427388;
+}
+
+.wrapperer {
+	display: flex;
+	justify-content: center;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+	width: 1200px;
+}
+
+.list-item {
+	margin-right: 100px;
+	width: 400px;
+	margin-bottom: 30px;
+}
+
+.list-item:nth-child(2n + 2) {
+	margin-right: 0;
+}
+
+.heading {
+	color: #ffffff;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.swal-button-container {
+	display: flex;
+	justify-content: center;
+}
+
+.swal-modal {
+	border-radius: 15px;
+}
+
+.swal-title {
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.swal-text {
+	font-weight: 500;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+}
+
+.load-more--films {
+	padding: 20px 35px 20px 35px;
+	border-radius: 10px;
+	text-transform: uppercase;
+	font-weight: 700;
+	background: #ef3258;
+	color: white;
+	border: 0 solid;
+	box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+	outline: 1px solid;
+	outline-color: rgba(255, 255, 255, 0.5);
+	outline-offset: 0px;
+	text-shadow: none;
+	transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.load-more--films:hover {
+	border: 1px solid;
+	box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5),
+		0 0 20px rgba(255, 255, 255, 0.2);
+	outline-color: rgba(255, 255, 255, 0);
+	outline-offset: 15px;
+	text-shadow: 1px 1px 2px #427388;
+}
