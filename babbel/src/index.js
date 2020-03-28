@@ -4,6 +4,7 @@ import swal from "sweetalert";
 
 let amount = 2;
 let counter = 2;
+const mass = [];
 
 link.fetcher.then(value => {
 	console.log(value);
@@ -13,7 +14,7 @@ link.fetcher.then(value => {
 		} else if (elem.poster_path !== null) {
 			link.list.insertAdjacentHTML(
 				"beforeend",
-				`<div class = 'list-item'><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></div>`
+				`<li class = 'list-item' data-id = '${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`
 			);
 		}
 	});
@@ -35,7 +36,7 @@ const changeFindFilm = e => {
 						if (elem.poster_path === null) {
 							return;
 						} else if (elem.poster_path !== null) {
-							return `<div class = 'list-item'><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></div>`;
+							return `<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`;
 						}
 					})
 					.join("")}`;
@@ -47,7 +48,7 @@ const changeFindFilm = e => {
 					if (elem.poster_path === null) {
 						return;
 					} else if (elem.poster_path !== null) {
-						return `<div class = 'list-item'><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></div>`;
+						return `<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`;
 					}
 				})
 				.join("")}`;
@@ -76,7 +77,7 @@ const loadMoreFilms = e => {
 					} else if (elem.poster_path !== null) {
 						link.list.insertAdjacentHTML(
 							"beforeend",
-							`<div class = 'list-item'><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></div>`
+							`<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`
 						);
 					}
 				});
@@ -97,7 +98,7 @@ const loadMoreFilms = e => {
 					} else if (elem.poster_path !== null) {
 						link.list.insertAdjacentHTML(
 							"beforeend",
-							`<div class = 'list-item'><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></div>`
+							`<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`
 						);
 					}
 				});
@@ -117,6 +118,58 @@ const whatIsThis = e => {
 	}
 };
 
+const goHome = e => {
+	e.preventDefault();
+
+	counter = 2;
+
+	link.fetcher.then(value => {
+		value.map(elem => {
+			link.list.innerHTML = `${value
+				.map(elem => {
+					if (elem.poster_path === null) {
+						return;
+					} else if (elem.poster_path !== null) {
+						return `<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`;
+					}
+				})
+				.join("")}`;
+		});
+	});
+
+	link.output.value = "";
+};
+
+localStorage.setItem("favorite", JSON.stringify(mass));
+
+const close = e => {
+	const id = e.target.closest("li").dataset.id;
+
+	fetch(
+		`https://api.themoviedb.org/3/movie/${id}?api_key=e9f6322f77334e3f0406d6b8eabd79ce`
+	)
+		.then(response => response.json())
+		.then(data => {
+			const favoriteId = JSON.parse(localStorage.getItem("favorite"));
+
+			if (!favoriteId.every(elem => elem.id === id)) {
+				return;
+			} else {
+				mass.push(data);
+				localStorage.setItem("favorite", JSON.stringify(mass));
+			}
+		});
+};
+
+link.home.addEventListener("click", goHome);
 link.list.addEventListener("click", whatIsThis);
 link.btnToLoadMoreFilms.addEventListener("click", loadMoreFilms);
 link.form.addEventListener("submit", changeFindFilm);
+link.list.addEventListener("click", close);
+
+const rotate = () => {
+	link.nav.classList.toggle("open");
+	link.trigger.classList.toggle("rotate-trigger");
+};
+
+link.trigger.addEventListener("click", rotate);

@@ -19,7 +19,7 @@
 	"bugs": {
 		"url": "https://github.com/"
 	},
-	"homepage": "https://github.com/SinHuanChuk/",
+	"homepage": "https://github.com/SinHuanChuk/JS-",
 	"devDependencies": {
 		"@babel/core": "^7.6.4",
 		"@babel/plugin-proposal-class-properties": "^7.5.5",
