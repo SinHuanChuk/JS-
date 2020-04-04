@@ -12,6 +12,8 @@ export const link = {
 	listLibrary: document.querySelector(".list-library"),
 	previous: document.querySelector(".previous"),
 	next: document.querySelector(".next"),
+	btn: document.querySelector(".btn"),
+	artem: document.querySelector(".artem"),
 
 	amount: 1,
 	counter: 1,

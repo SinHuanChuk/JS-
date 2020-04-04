@@ -1,61 +1,14 @@
 import { link } from "../refs/refs";
-import Swal from "sweetalert2";
-
-// const nextPage = e => {
-// 	if (link.form.elements[0].value !== "") {
-// 		link.amount += 1;
-
-// 		fetch(
-// 			`https://api.themoviedb.org/3/search/movie?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=${link.amount}&include_adult=false&query=${link.form.elements[0].value}`
-// 		)
-// 			.then(response => {
-// 				return response.json();
-// 			})
-// 			.then(data => {
-// 				link.list.innerHTML = `${data.results
-// 					.map(elem => {
-// 						if (elem.poster_path === null) {
-// 							return;
-// 						} else if (elem.poster_path !== null) {
-// 							return `<li class = 'list-item' data-id = '${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}" data-img = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}'><h3 class = 'heading'>${elem.title}</h3></li>`;
-// 						}
-// 					})
-// 					.join("")}`;
-// 			});
-// 	} else {
-// 		link.amount += 1;
-
-// 		fetch(
-// 			`https://api.themoviedb.org/3/search/movie?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=${link.amount}`
-// 		)
-// 			.then(response => {
-// 				return response.json();
-// 			})
-// 			.then(data => {
-// 				link.list.innerHTML = `${data.results
-// 					.map(elem => {
-// 						if (elem.poster_path === null) {
-// 							return;
-// 						} else if (elem.poster_path !== null) {
-// 							return `<li class = 'list-item' data-id = '${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}" data-img = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}'><h3 class = 'heading'>${elem.title}</h3></li>`;
-// 						}
-// 					})
-// 					.join("")}`;
-// 			});
-// 	}
-// };
-
-// link.next.addEventListener("click", nextPage);
+import services from "../services";
 
 const loadMoreFilms = e => {
-	e.preventDefault();
-
-	if (link.form.elements[0].value !== "") {
+	if (services.value) {
 		link.counter = 1;
+		link.form.reset();
 
 		fetch(
 			`https://api.themoviedb.org/3/search/movie?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=${(link.amount += 1)}&include_adult=false&query=${
-				link.form.elements[0].value
+				services.value
 			}`
 		)
 			.then(response => {
@@ -73,7 +26,7 @@ const loadMoreFilms = e => {
 					}
 				});
 			});
-	} else if (link.form.elements[0].value === "") {
+	} else if (services.value === "") {
 		link.amount = 1;
 
 		fetch(
@@ -97,4 +50,11 @@ const loadMoreFilms = e => {
 	}
 };
 
+const removeBrute = e => {
+	e.preventDefault();
+
+	link.amount = 1;
+};
+
+link.form.addEventListener("submit", removeBrute);
 link.btnToLoadMoreFilms.addEventListener("click", loadMoreFilms);
