@@ -1,119 +1,54 @@
 import "./styles.css";
 import { link } from "./refs/refs";
+import "./components/popular";
+import "./components/findFilms";
+import "./components/animationToNav";
+import "./components/loadMoreFilms";
+import "./components/infoOfFilm";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 import swal from "sweetalert";
 
-let amount = 2;
-let counter = 2;
-const mass = [];
-
-link.fetcher.then(value => {
-	console.log(value);
-	value.map(elem => {
-		if (elem.poster_path === null) {
-			return;
-		} else if (elem.poster_path !== null) {
-			link.list.insertAdjacentHTML(
-				"beforeend",
-				`<li class = 'list-item' data-id = '${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`
-			);
-		}
-	});
-});
-
-const changeFindFilm = e => {
+const showFavoriteFilms = e => {
 	e.preventDefault();
+	link.form.classList.add("none");
+	link.btnToLoadMoreFilms.classList.add("none");
+	link.listLibrary.classList.remove("none");
+	link.list.classList.add("none");
 
-	if (link.output.value !== "") {
-		fetch(
-			`https://api.themoviedb.org/3/search/movie?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=1&include_adult=false&query=${link.output.value}`
-		)
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				link.list.innerHTML = `${data.results
-					.map(elem => {
-						if (elem.poster_path === null) {
-							return;
-						} else if (elem.poster_path !== null) {
-							return `<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`;
-						}
-					})
-					.join("")}`;
-			});
-	} else if (link.output.value === "") {
-		link.fetcher.then(value => {
-			link.list.innerHTML = `${value
-				.map(elem => {
-					if (elem.poster_path === null) {
-						return;
-					} else if (elem.poster_path !== null) {
-						return `<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`;
-					}
-				})
-				.join("")}`;
-		});
-	}
+	const localObject = JSON.parse(localStorage.getItem("favorite"));
+
+	link.listLibrary.innerHTML = `${localObject
+		.map(elem => {
+			return `<li class = 'list-item--watched' data-id = '${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}" data-img = "https://image.tmdb.org/t/p/w500/${elem.poster_path}""><h3 class = 'heading'>${elem.title}</h3></li>`;
+		})
+		.join("")}`;
 };
 
-const loadMoreFilms = e => {
-	e.preventDefault();
-
-	if (link.output.value !== "") {
-		counter = 2;
-
-		fetch(
-			`https://api.themoviedb.org/3/search/movie?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=${amount++}&include_adult=false&query=${
-				link.output.value
-			}`
-		)
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				return data.results.map(elem => {
-					if (elem.poster_path === null) {
-						return;
-					} else if (elem.poster_path !== null) {
-						link.list.insertAdjacentHTML(
-							"beforeend",
-							`<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`
-						);
-					}
-				});
-			});
-	} else if (link.output.value === "") {
-		amount = 2;
-
-		fetch(
-			`https://api.themoviedb.org/3/movie/popular?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=${counter++}`
-		)
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				return data.results.map(elem => {
-					if (elem.poster_path === null) {
-						return;
-					} else if (elem.poster_path !== null) {
-						link.list.insertAdjacentHTML(
-							"beforeend",
-							`<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`
-						);
-					}
-				});
-			});
-	}
-};
-
-const whatIsThis = e => {
+const showInfoWatchedFilm = e => {
 	e.preventDefault();
 
 	if (e.target.nodeName !== "IMG") {
 		return;
 	} else {
-		swal(`${e.target.dataset.title}`, `${e.target.dataset.description}`, {
-			button: "close"
+		Swal.fire({
+			imageUrl: `${e.target.dataset.img}`,
+			title: `${e.target.dataset.title}`,
+			text: `${e.target.dataset.description}`,
+			showCloseButton: true,
+			imageHeight: 450,
+			imageWidth: 300,
+			backdrop: `rgba(0, 0, 0, 0.75)`,
+			confirmButtonText: "remove from watched?"
+		}).then(result => {
+			if (result.value) {
+				Swal.fire({
+					icon: "success",
+					title: "remove from watched",
+					showConfirmButton: false,
+					timer: 1800
+				});
+			}
 		});
 	}
 };
@@ -121,55 +56,35 @@ const whatIsThis = e => {
 const goHome = e => {
 	e.preventDefault();
 
-	counter = 2;
+	link.form.classList.remove("none");
+	link.btnToLoadMoreFilms.classList.remove("none");
+	link.listLibrary.classList.add("none");
+	link.list.classList.remove("none");
+	link.output.value = "";
 
-	link.fetcher.then(value => {
-		value.map(elem => {
-			link.list.innerHTML = `${value
+	fetch(
+		`https://api.themoviedb.org/3/movie/popular?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=`
+	)
+		.then(response => {
+			return response.json();
+		})
+		.then(data => {
+			link.list.innerHTML = `${data.results
 				.map(elem => {
 					if (elem.poster_path === null) {
 						return;
 					} else if (elem.poster_path !== null) {
-						return `<li class = 'list-item ${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}"><h3 class = 'heading'>${elem.title}</h3></li>`;
+						return `<li class = 'list-item' data-id = '${elem.id}'><div class = 'overage'>${elem.vote_average}</div><img class = 'list-item__image' src = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}' data-title = "${elem.title}" data-description = "${elem.overview}" data-img = 'https://image.tmdb.org/t/p/w500/${elem.poster_path}'><h3 class = 'heading'>${elem.title}</h3></li>`;
 					}
 				})
 				.join("")}`;
 		});
-	});
 
-	link.output.value = "";
+	link.counter = 1;
 };
 
-localStorage.setItem("favorite", JSON.stringify(mass));
-
-const close = e => {
-	const id = e.target.closest("li").dataset.id;
-
-	fetch(
-		`https://api.themoviedb.org/3/movie/${id}?api_key=e9f6322f77334e3f0406d6b8eabd79ce`
-	)
-		.then(response => response.json())
-		.then(data => {
-			const favoriteId = JSON.parse(localStorage.getItem("favorite"));
-
-			if (!favoriteId.every(elem => elem.id === id)) {
-				return;
-			} else {
-				mass.push(data);
-				localStorage.setItem("favorite", JSON.stringify(mass));
-			}
-		});
-};
+console.log(link.form.elements);
 
 link.home.addEventListener("click", goHome);
-link.list.addEventListener("click", whatIsThis);
-link.btnToLoadMoreFilms.addEventListener("click", loadMoreFilms);
-link.form.addEventListener("submit", changeFindFilm);
-link.list.addEventListener("click", close);
-
-const rotate = () => {
-	link.nav.classList.toggle("open");
-	link.trigger.classList.toggle("rotate-trigger");
-};
-
-link.trigger.addEventListener("click", rotate);
+link.library.addEventListener("click", showFavoriteFilms);
+link.listLibrary.addEventListener("click", showInfoWatchedFilm);

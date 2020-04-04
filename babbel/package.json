@@ -51,7 +51,8 @@
 	},
 	"dependencies": {
 		"core-js": "^3.3.4",
-		"handlebars": "^4.5.3",
-		"sweetalert": "^2.1.2"
+		"handlebars": "^4.7.5",
+		"sweetalert": "^2.1.2",
+		"sweetalert2": "^9.10.9"
 	}
 }

@@ -2,16 +2,19 @@
 
 html {
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 body {
-	background: linear-gradient(-45deg, #000000, #ffffff, #000000, #000000);
-	background-size: 10000% 10000%;
-	animation: gradient 5s ease infinite;
+	/*background: linear-gradient(-45deg, #000000, #ffffff, #000000, #000000);
+	background-size: 10000% 10000%; 
+	animation: gradient 5s ease infinite;*/
 	font-family: "Roboto", sans-serif;
+
+	background-color: grey;
 }
 
-@keyframes gradient {
+/* @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
 	}
@@ -21,7 +24,7 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
-}
+} */
 *,
 *::before,
 *::after {
@@ -147,12 +150,14 @@ input:focus ~ .highlight {
 	margin: 0;
 	padding: 0;
 	width: 1600px;
+	list-style-type: none;
 }
 
 .list-item {
+	margin-top: 10px;
 	margin-right: 50px;
 	width: 400px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	position: relative;
 }
 
@@ -160,29 +165,32 @@ input:focus ~ .highlight {
 	margin-right: 0;
 }
 
+.list-library {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	margin: 0;
+	padding: 0;
+	width: 1600px;
+	list-style-type: none;
+}
+
+.list-item--watched {
+	margin-top: 25px;
+	margin-right: 50px;
+	width: 400px;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.list-item--watched:nth-child(3n + 3) {
+	margin-right: 0;
+}
+
 .heading {
 	color: #ffffff;
 	text-transform: uppercase;
 	text-align: center;
-}
-
-.swal-button-container {
-	display: flex;
-	justify-content: center;
-}
-
-.swal-modal {
-	border-radius: 15px;
-}
-
-.swal-title {
-	text-transform: uppercase;
-	font-size: 20px;
-	font-weight: 700;
-}
-
-.swal-text {
-	font-weight: 500;
 }
 
 .button-container {
@@ -214,10 +222,6 @@ input:focus ~ .highlight {
 	outline-color: rgba(255, 255, 255, 0);
 	outline-offset: 15px;
 	text-shadow: 1px 1px 2px #427388;
-}
-
-.list {
-	list-style-type: none;
 }
 
 .navigation {
@@ -256,17 +260,6 @@ input:focus ~ .highlight {
 	transform: rotate(180deg);
 }
 
-.home {
-	width: 35px;
-	height: 35px;
-	cursor: pointer;
-}
-
-.home:hover {
-	transition: 0.7s ease;
-	transform: rotate(360deg);
-}
-
 .overage {
 	position: absolute;
 	background-color: #f03a61;
@@ -277,12 +270,20 @@ input:focus ~ .highlight {
 .library {
 	width: 40px;
 	height: 40px;
-	margin-top: 25px;
-	margin-left: -2px;
 	cursor: pointer;
 }
 
 .library:hover {
+	transition: 0.7s ease;
+	transform: rotate(360deg);
+}
+
+.home {
+	margin-bottom: 6px;
+	cursor: pointer;
+}
+
+.home:hover {
 	transition: 0.7s ease;
 	transform: rotate(360deg);
 }
@@ -298,4 +299,37 @@ input:focus ~ .highlight {
 	left: 0;
 	border-top-right-radius: 25px;
 	border-top-left-radius: 25px;
+}
+
+.btn-to--top {
+	background: none;
+	border: none;
+	position: fixed;
+	bottom: 15px;
+	right: 20px;
+	width: 60px;
+	height: 60px;
+	background-color: #f03a61;
+	border-radius: 100%;
+}
+
+.img-to--top {
+	width: 45px;
+	height: 55px;
+}
+
+.swal2-container {
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.none {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.flex {
+	display: flex;
 }
