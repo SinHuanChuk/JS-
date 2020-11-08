@@ -9,7 +9,7 @@ const changeFindFilm = e => {
 		services.getValue(e.target.elements[0].value);
 
 		fetch(
-			`https://api.themoviedb.org/3/search/movie?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=1&include_adult=false&query=${e.target.elements[0].value.toLowerCase()}`
+			`https://api.themoviedb.org/3/search/movie?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=1&include_adult=false&query=${e.target.elements[0].value.toLowerCase().trim()}`
 		)
 			.then(response => {
 				return response.json();

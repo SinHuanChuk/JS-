@@ -19,7 +19,7 @@ const showFavoriteFilms = e => {
 
 	if (link.listLibrary.children.length < 1) {
 		link.listLibrary.innerHTML =
-			'<img src="https://i.postimg.cc/Wzp1z454/photo-2020-04-04-22-44-26.jpg" alt="" class="artem">';
+			'<img src="https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg" alt="" class="artem">';
 	} else if (link.listLibrary.children.length >= 1) {
 		link.artem.remove();
 	}

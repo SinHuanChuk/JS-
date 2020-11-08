@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.thead {
+    background-color: rgb(94, 174, 240);
+}
+
+.transactionHistory {
+    margin: 50px 0 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.th {
+    padding: 15px 53px 15px 53px;
+    text-transform: uppercase;
+    color: white;
+    font-size: 12px;
+}
+
+.td {
+    margin: 0;
+    padding: 15px 45px 15px 45px;
+    border: 1px solid black;
+}
+
+.tr:nth-child(2n) {
+    background-color: rgb(206, 206, 206);
+}

@@ -1,0 +1,45 @@
+.item {
+    display: flex;
+    margin-bottom: 22px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 300px;
+    border-radius: 3%;
+    padding-left: 10px;
+}
+
+.item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.avatar {
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.name {
+    font-size: 24px;
+    margin: 0;
+}
+
+.active {
+    background-color: green;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    margin-top: 40px;
+}
+
+.disabled {
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    margin-top: 40px;
+}
+
+.list {
+    padding-left: 0;
+}

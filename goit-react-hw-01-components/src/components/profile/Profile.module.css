@@ -1,0 +1,76 @@
+* {
+    font-family: 'Trispace', sans-serif;
+}
+
+.list {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(214, 214, 248);
+    border-top: 1px solid black;
+}
+
+.name {
+    font-weight: 700;
+    color: black;
+}
+
+.location {
+    margin-bottom: 22px;
+}
+
+.wrapperer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    margin: 0;
+}
+
+.avatar {
+    width: 156px;
+    border-radius: 100%;
+}
+
+.container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+.wrapper {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 5%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p {
+    margin: 10px 0px 10px 0px;
+    color: grey;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 20px 0;
+}
+
+.label {
+    margin-bottom: 5px;
+    font-family: 'Trispace', sans-serif;
+    font-weight: 400;
+    color: grey;
+}
+
+.quantity {
+    font-family: 'Trispace', sans-serif;
+    font-weight: 700;
+}
