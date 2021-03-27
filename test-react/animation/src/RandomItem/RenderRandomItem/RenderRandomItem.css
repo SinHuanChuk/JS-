@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.wrapper {
+    width: 400px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.text {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    text-transform: uppercase;
+    background-color: rgb(209, 18, 18);
+    border-radius: 15px;    
+    border: none;
+    font-size: 20px;
+    width: 200px;
+}
+
+.fade-item-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.fade-item-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 500ms ease-in;
+}
+
+.fade-item-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-item-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 500ms ease-in;    
+}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Mega&display=swap');
+
+.list {
+ font-family: 'Lexend Mega', sans-serif;
+ list-style: none;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-around;
+ align-items: center;
+}
+
+.items {
+    background-color: rgb(5, 71, 158);
+    border-radius: 10%;
+    margin: 10px;
+    width: 150px;
+    height: 120px;
+}
+
+.description {
+    display: block;
+    padding: 10px 10px 10px 10px;
+    color: white;
+    text-decoration: underline;
+}

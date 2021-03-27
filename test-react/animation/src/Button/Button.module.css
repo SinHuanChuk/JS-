@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin: 0 0 15px 0;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    background-color: rgb(18, 133, 209);
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+}

@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cum-appear {
+    opacity: 0;
+    transform: translateX(-100%)
+ }
+ 
+ .cum-appear-active {
+     opacity: 1;
+     transform: translateX(0);
+     transition: all 500ms linear;
+ }

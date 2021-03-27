@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Nav-appear {
+    transform: translateY(-100%);
+}
+
+.Nav-appear-active {
+    transition: all 600ms linear;
+    transform: translateY(0);
+}
+
+.animationmysemen-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.animationmysemen-enter-active {
+    opacity: 1;
+    transition: all 500ms ease-in;
+    transform: translateX(0);
+}
+
+.animationmysemen-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animationmysemen-exit-active {
+    opacity: 0;
+    transition: all 500ms linear;
+    transform: translateX(100%);
+}
